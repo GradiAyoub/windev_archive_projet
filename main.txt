@@ -1,0 +1,300 @@
+
+nbJours						est un entier
+MaConnexion					est une Connexion
+
+json_chemin est une chaîne = fRepExe+ "\fichiers_json\"
+xlsx_chemin est une chaîne= fRepExe+ "\fichiers_xlsx\"
+
+//tables
+//export 1Demande_achat 2activite 3activite_employe 4activite_MO_prducteur 5activites_station 6ancientte 7Archivage_paie_heure_sup 8arret_temporaire 9B_E_F 10banque
+// 11budget 12caisse 13caisse_paie 14caisse_recolte 15calibre 16catalogue_produit  17categorie_cible 18categorie_controle 19categorie_defaut 20categorie_entreien
+// 21employee
+
+
+// validate date
+nbJours = DateDifférence(SAI_date_debut, SAI_date_fin )
+SI nbJours > 365 ALORS
+	Info("err date")
+	RETOUR 
+FIN
+
+
+//export data  json and xlsx
+
+
+
+//export 1 Demande_achat
+demande_achat_json			est une chaîne
+demande_achat_xlsx			est une chaîne
+REQ_get_Demande_achat.ParamDate_demande_debut	= SAI_date_debut
+REQ_get_Demande_achat.ParamDate_demande_fin		= SAI_date_fin
+HExécuteRequête(REQ_get_Demande_achat, hRequêteDéfaut)
+demande_achat_json	= json_chemin + "Demande_achat_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+demande_achat_xlsx	=  xlsx_chemin + "Demande_achat_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_Demande_achat,  demande_achat_json, "")
+HExportXLS(REQ_get_Demande_achat,  demande_achat_xlsx, "")
+
+//export 2 activite
+activite_json			est une chaîne
+activite_xlsx			est une chaîne
+HExécuteRequête(REQ_get_activite, hRequêteDéfaut)
+activite_json	=  json_chemin + "activite_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+activite_xlsx	= xlsx_chemin+ "activite_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_activite,  activite_json, "")
+HExportXLS(REQ_get_activite,  activite_xlsx, "")
+
+//export 3 activite_employe
+activite_employe_json			est une chaîne
+activite_employe_xlsx			est une chaîne
+REQ_get_activite_employe.ParamDATE_debut	= SAI_date_debut
+REQ_get_activite_employe.ParamDATE_fin		= SAI_date_fin
+HExécuteRequête(REQ_get_activite_employe, hRequêteDéfaut)
+activite_employe_json	=  json_chemin + "activite_employe_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+activite_employe_xlsx	= xlsx_chemin+ "activite_employe_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_activite_employe,  activite_employe_json, "")
+HExportXLS(REQ_get_activite_employe,  activite_employe_xlsx, "")
+
+//export 4 activite_MO_prducteur
+activite_MO_prducteu_json			est une chaîne
+activite_MO_prducteu_xlsx			est une chaîne
+REQ_get_activite_MO_prducteur.ParamDATE_debut	= SAI_date_debut
+REQ_get_activite_MO_prducteur.ParamDATE_fin		= SAI_date_fin
+HExécuteRequête(REQ_get_activite_MO_prducteur, hRequêteDéfaut)
+activite_MO_prducteu_json	=  json_chemin + "activite_MO_prducteur_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+activite_MO_prducteu_xlsx	= xlsx_chemin+ "activite_MO_prducteur_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_activite_MO_prducteur,  activite_MO_prducteu_json, "")
+HExportXLS(REQ_get_activite_MO_prducteur,  activite_MO_prducteu_xlsx, "")
+
+//export 5 activites_station
+activites_station_json			est une chaîne
+activites_station_xlsx			est une chaîne
+REQ_get_Activites_station.ParamDATE_debut	= SAI_date_debut
+REQ_get_Activites_station.ParamDATE_fin		= SAI_date_fin
+HExécuteRequête(REQ_get_Activites_station, hRequêteDéfaut)
+activites_station_json	=  json_chemin + "activites_station_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+activites_station_xlsx	= xlsx_chemin+ "activites_station_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_Activites_station,  activites_station_json, "")
+HExportXLS(REQ_get_Activites_station,  activites_station_xlsx, "")
+
+//export 6 ancientte
+ancientte_json			est une chaîne
+ancientte_xlsx			est une chaîne
+HExécuteRequête(REQ_get_ancientte, hRequêteDéfaut)
+ancientte_json	=  json_chemin + "ancientte_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+ancientte_xlsx	= xlsx_chemin+ "ancientte_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_ancientte,  ancientte_json, "")
+HExportXLS(REQ_get_ancientte,  ancientte_xlsx, "")
+
+//export 7 archivage_paie_heure_sup
+archivage_paie_heure_sup_json			est une chaîne
+archivage_paie_heure_sup_xlsx			est une chaîne
+REQ_get_Archivage_paie_heure_sup.Paramdate_deut	= SAI_date_debut
+REQ_get_Archivage_paie_heure_sup.Paramdate_fin		= SAI_date_fin
+HExécuteRequête(REQ_get_Archivage_paie_heure_sup, hRequêteDéfaut)
+archivage_paie_heure_sup_json	=  json_chemin + "archivage_paie_heure_sup_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+archivage_paie_heure_sup_xlsx	= xlsx_chemin+ "archivage_paie_heure_sup_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_Archivage_paie_heure_sup,  archivage_paie_heure_sup_json, "")
+HExportXLS(REQ_get_Archivage_paie_heure_sup,  archivage_paie_heure_sup_xlsx, "")
+
+//export 8 arret_temporaire
+arret_temporaire_json			est une chaîne
+arret_temporaire_xlsx			est une chaîne
+REQ_get_arret_temporaire.ParamDate_Debut		= SAI_date_debut
+REQ_get_arret_temporaire.ParamDate_Fin		= SAI_date_fin
+HExécuteRequête(REQ_get_arret_temporaire, hRequêteDéfaut)
+arret_temporaire_json	=  json_chemin + "arret_temporaire_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+arret_temporaire_xlsx	= xlsx_chemin+ "arret_temporaire_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_arret_temporaire,  arret_temporaire_json, "")
+HExportXLS(REQ_get_arret_temporaire,  arret_temporaire_xlsx, "")
+
+//export 9 B_E_F
+B_E_F_json			est une chaîne
+B_E_F_xlsx			est une chaîne
+HExécuteRequête(REQ_get_B_E_F, hRequêteDéfaut)
+B_E_F_json	=  json_chemin + "B_E_F_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+B_E_F_xlsx	= xlsx_chemin+ "B_E_F_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_B_E_F,  B_E_F_json, "")
+HExportXLS(REQ_get_B_E_F,  B_E_F_xlsx, "")
+
+//export 10 banque
+banque_json			est une chaîne
+banque_xlsx			est une chaîne
+HExécuteRequête(REQ_get_banque, hRequêteDéfaut)
+banque_json	=  json_chemin + "banque_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+banque_xlsx	= xlsx_chemin+ "banque_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_banque,  banque_json, "")
+HExportXLS(REQ_get_banque,  banque_xlsx, "")
+
+
+
+//export 11 budget
+budget_json			est une chaîne
+budget_xlsx			est une chaîne
+REQ_get_budget.Paramdatedébut		= SAI_date_debut
+REQ_get_budget.Paramdatefin			= SAI_date_fin
+HExécuteRequête(REQ_get_budget, hRequêteDéfaut)
+budget_json	=  json_chemin + "budget_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+budget_xlsx	= xlsx_chemin+ "budget_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_budget,  budget_json, "")
+HExportXLS(REQ_get_budget,  budget_xlsx, "")
+
+//export 12 caisse
+caisse_json			est une chaîne
+caisse_xlsx			est une chaîne
+HExécuteRequête(REQ_get_caisse, hRequêteDéfaut)
+caisse_json	=  json_chemin + "caisse_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+caisse_xlsx	= xlsx_chemin+ "caisse_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_caisse,  caisse_json, "")
+HExportXLS(REQ_get_caisse,  caisse_xlsx, "")
+
+//export 13 caisse_paie
+caisse_paie_json			est une chaîne
+caisse_paie_xlsx			est une chaîne
+HExécuteRequête(REQ_get_caisse_paie, hRequêteDéfaut)
+caisse_paie_json	=  json_chemin + "caisse_paie_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+caisse_paie_xlsx	= xlsx_chemin+ "caisse_paie_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_caisse_paie,  caisse_paie_json, "")
+HExportXLS(REQ_get_caisse_paie,  caisse_paie_xlsx, "")
+
+//export 14 caisse_recolte
+caisse_recolte_json			est une chaîne
+caisse_recolte_xlsx			est une chaîne
+HExécuteRequête(REQ_get_caisse_recolte, hRequêteDéfaut)
+caisse_recolte_json	=  json_chemin + "caisse_recolte_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+caisse_recolte_xlsx	= xlsx_chemin+ "caisse_recolte_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_caisse_recolte,  caisse_recolte_json, "")
+HExportXLS(REQ_get_caisse_recolte,  caisse_recolte_xlsx, "")
+
+//export 15 calibre
+calibre_json			est une chaîne
+calibre_xlsx			est une chaîne
+HExécuteRequête(REQ_get_calibre, hRequêteDéfaut)
+calibre_json	=  json_chemin + "calibre_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+calibre_xlsx	= xlsx_chemin+ "calibre_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_calibre,  calibre_json, "")
+HExportXLS(REQ_get_calibre,  calibre_xlsx, "")
+
+//export 16 catalogue_produit
+catalogue_produit_json			est une chaîne
+catalogue_produit_xlsx			est une chaîne
+HExécuteRequête(REQ_get_catalogue_produit, hRequêteDéfaut)
+catalogue_produit_json	=  json_chemin + "catalogue_produit_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+catalogue_produit_xlsx	= xlsx_chemin+ "catalogue_produit_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_catalogue_produit,  catalogue_produit_json, "")
+HExportXLS(REQ_get_catalogue_produit,  catalogue_produit_xlsx, "")
+
+//export 17 categorie_cible
+categorie_cible_json			est une chaîne
+categorie_cible_xlsx			est une chaîne
+HExécuteRequête(REQ_get_categorie_cible, hRequêteDéfaut)
+categorie_cible_json	=  json_chemin + "categorie_cible_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+categorie_cible_xlsx	= xlsx_chemin+ "categorie_cible_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_categorie_cible,  categorie_cible_json, "")
+HExportXLS(REQ_get_categorie_cible,  categorie_cible_xlsx, "")
+
+//export 18 categorie_controle
+categorie_controle_json			est une chaîne
+categorie_controle_xlsx			est une chaîne
+HExécuteRequête(REQ_get_categorie_controle, hRequêteDéfaut)
+categorie_controle_json	=  json_chemin + "categorie_controle_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+categorie_controle_xlsx	= xlsx_chemin+ "categorie_controle_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_categorie_controle,  categorie_controle_json, "")
+HExportXLS(REQ_get_categorie_controle,  categorie_controle_xlsx, "")
+
+//export 19 categorie_defaut
+categorie_defaut_json			est une chaîne
+categorie_defaut_xlsx			est une chaîne
+HExécuteRequête(REQ_get_categorie_defaut, hRequêteDéfaut)
+categorie_defaut_json	=  json_chemin + "categorie_defaut_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+categorie_defaut_xlsx	= xlsx_chemin+ "categorie_defaut_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_categorie_defaut,  categorie_defaut_json, "")
+HExportXLS(REQ_get_categorie_defaut,  categorie_defaut_xlsx, "")
+
+//export 20 categorie_entreien
+categorie_entreien_json			est une chaîne
+categorie_entreien_xlsx			est une chaîne
+HExécuteRequête(REQ_get_categorie_entreien, hRequêteDéfaut)
+categorie_entreien_json	=  json_chemin + "categorie_entreien_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+categorie_entreien_xlsx	= xlsx_chemin+ "categorie_entreien_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_categorie_entreien,  categorie_entreien_json, "")
+HExportXLS(REQ_get_categorie_entreien,  categorie_entreien_xlsx, "")
+
+
+//export 21 employee
+employee_json			est une chaîne
+employee_xlsx			est une chaîne
+HExécuteRequête(REQ_get_employee, hRequêteDéfaut)
+employee_json	=  json_chemin + "employee_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".json"
+employee_xlsx	= xlsx_chemin+ "employee_" + SAI_date_debut + "_"  + SAI_date_fin  + "_"  +  SysDateTime()   + ".xlsx"
+HExporteJSON(REQ_get_employee,  employee_json, "")
+HExportXLS(REQ_get_employee,  employee_xlsx, "")
+
+// create database and change database connetion
+
+MaConnexion.Utilisateur		= "admin"
+MaConnexion.MotDePasse		= ""
+MaConnexion.Serveur			= "DESKTOP-AVU5M49"
+MaConnexion.BaseDeDonnées	= "db_" + SAI_date_debut + "_" + SAI_date_fin 
+MaConnexion.Provider		= hAccèsHFClientServeur
+MaConnexion.Accès			= hOLectureEcriture
+MaConnexion.OptionsCurseur	= hCurseurClient
+
+
+SI  HOuvreConnexion(MaConnexion) ET HChangeConnexion("*", MaConnexion) ALORS
+	
+	HImportJSON(Demande_achat, demande_achat_json, "", "", hImpCréation)
+	HImportJSON(activite, activite_json, "", "", hImpCréation)
+	HImportJSON(activite_employe, activite_employe_json, "", "", hImpCréation)
+	HImportJSON(activite_MO_producteur, activite_MO_prducteu_json, "", "", hImpCréation)
+	HImportJSON(Activites_station, activites_station_json, "", "", hImpCréation)
+	HImportJSON(ancientte, ancientte_json, "", "", hImpCréation)
+	HImportJSON(Archivage_paie_heure_sup, archivage_paie_heure_sup_json, "", "", hImpCréation)
+	HImportJSON(Arret_temporaire, arret_temporaire_json, "", "", hImpCréation)
+	HImportJSON(B_E_F, B_E_F_json, "", "", hImpCréation)
+	HImportJSON(Baqnue, banque_json, "", "", hImpCréation)
+	HImportJSON(Budget, budget_json, "", "", hImpCréation)
+	
+	
+	HImportJSON(Employee, employee_json, "", "", hImpCréation)
+	HImportJSON(caisse, caisse_json, "", "", hImpCréation)
+	
+	HImportJSON(caisse_paie, caisse_paie_json, "", "", hImpCréation)
+	HImportJSON(caisse_recolte, caisse_recolte_json, "", "", hImpCréation)
+	HImportJSON(calibre, calibre_json, "", "", hImpCréation)
+	HImportJSON(catalogue_produit, catalogue_produit_json, "", "", hImpCréation)
+	HImportJSON(Categorie_cible, categorie_cible_json, "", "", hImpCréation)
+	HImportJSON(categorie_controle, categorie_controle_json, "", "", hImpCréation)
+	HImportJSON(categorie_defaut, categorie_defaut_json, "", "", hImpCréation)
+	HImportJSON(categorie_entreien, categorie_entreien_json, "", "", hImpCréation)
+	
+	
+FIN
+
+
+
+
+
+
+// change database connection to main database 
+//MaConnexion.Utilisateur		= "admin"
+//MaConnexion.MotDePasse		= ""
+//MaConnexion.Serveur			= "DESKTOP-AVU5M49"
+//MaConnexion.BaseDeDonnées	= "db_temp1" 
+//MaConnexion.Provider		= hAccèsHFClientServeur
+//MaConnexion.Accès			= hOLectureEcriture
+//MaConnexion.OptionsCurseur	= hCurseurClient
+
+
+//SI  HOuvreConnexion(MaConnexion) ET HChangeConnexion("*", MaConnexion) ALORS
+	
+	
+//	REQ_delete_Demande_achat.ParamDate_demande_debut	= SAI_date_debut
+//	REQ_delete_Demande_achat.ParamDate_demande_fin		= SAI_date_fin
+//	HExécuteRequête(REQ_delete_Demande_achat, hRequêteDéfaut)
+	
+	
+//FIN
+
+
+
+
